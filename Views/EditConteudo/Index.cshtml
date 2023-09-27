@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MestreDigital.Model.Conteudo>
+
+@{
+    ViewBag.Title = "Gerenciamento de Conteúdos";
+}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mestre Digital - Gerenciamento de Conteúdos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <h1>Listagem de Conteúdos</h1>
+        <a href="@Url.Action("Create", "EditConteudo")" class="btn btn-success">Adicionar Novo Conteúdo</a>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>SubCategoria</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var conteudo in Model)
+                {
+                    <tr>
+                        <td>@conteudo.Titulo</td>
+                        <td>@conteudo.Descricao</td>
+                        <td>@conteudo.Subcategoria.Nome</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "EditConteudo", new { id = conteudo.ConteudoID })" class="btn btn-primary btn-sm">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js" integrity="sha384-MbTY+MAgV4XNz4o4lF4lPTTJKPIFWePhffR4FprB5Ciw5KDu5Td4jK0rEi8bp4Ii" crossorigin="anonymous"></script>
+</body>
+
+</html>

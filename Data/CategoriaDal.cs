@@ -2,6 +2,7 @@
 using MestreDigital.Model;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace MestreDigital.DAL
     {
@@ -43,6 +44,41 @@ namespace MestreDigital.DAL
 
                 return categorias;
             }
+
+        public void UpsertCategoria(int? categoriaId, string nome, string descricao, string actionType)
+        {
+            using (var connection = _connectionService.CreateConnection())
+            {
+                connection.Open();
+
+                // Definindo a stored procedure correta com base na ação
+                string storedProcedureName = actionType.ToLower() == "u" ? "sp_Categoria_up" : "sp_Categoria_ins";
+
+                using (var command = new SqlCommand(storedProcedureName, connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    if (actionType.ToLower() == "u")
+                    {
+                        command.Parameters.AddWithValue("@CATEGORIAID", categoriaId);
+                        command.Parameters.AddWithValue("@NOVO_NOME", nome);
+                        command.Parameters.AddWithValue("@NOVA_DESCRICAO", descricao);
+                    }
+                    else if (actionType.ToLower() == "i")
+                    {
+                        command.Parameters.AddWithValue("@NOME", nome);
+                        command.Parameters.AddWithValue("@DESCRICAO", descricao);
+                    }
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
+
+
     }
-    }
+}
 

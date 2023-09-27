@@ -173,7 +173,7 @@ namespace MestreDigital.Services
                 return "Por favor, insira um número válido para escolher um conteúdo.";
             }
 
-            var conteudo = _conteudoDAL.GetConteudoById(selectedConteudoId).FirstOrDefault();
+            var conteudo = _conteudoDAL.GetConteudoById(selectedConteudoId);
             if (conteudo == null)
             {
                 return "Desculpe, o conteúdo selecionado não foi encontrado. Por favor, escolha outro conteúdo.";

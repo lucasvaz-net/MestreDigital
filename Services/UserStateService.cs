@@ -17,7 +17,7 @@ namespace MestreDigital.Services
             InMemoryStateStore.SetState(chatId, state);
         }
 
-        // Você pode adicionar outros métodos conforme necessário.
+     
     }
 
 }
