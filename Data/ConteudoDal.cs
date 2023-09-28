@@ -36,9 +36,22 @@ namespace MestreDigital.Data
                                 ConteudoID = reader.GetInt32(reader.GetOrdinal("ConteudoID")),
                                 SubcategoriaID = reader.GetInt32(reader.GetOrdinal("SubcategoriaID")),
                                 Titulo = reader.GetString(reader.GetOrdinal("Titulo")),
-                                Descricao = reader.GetString(reader.GetOrdinal("Descricao")),
+                                Descricao = reader.GetString(reader.GetOrdinal("descricaoconteudo")),
                                 Link = reader.IsDBNull(reader.GetOrdinal("Link")) ? null : reader.GetString(reader.GetOrdinal("Link")),
-                                Texto = reader.IsDBNull(reader.GetOrdinal("Texto")) ? null : reader.GetString(reader.GetOrdinal("Texto"))
+                                Texto = reader.IsDBNull(reader.GetOrdinal("Texto")) ? null : reader.GetString(reader.GetOrdinal("Texto")),
+                                Subcategoria = new Subcategoria
+                                {
+                                    SubcategoriaID = reader.GetInt32(reader.GetOrdinal("SubcategoriaID")),
+                                    Nome = reader.GetString(reader.GetOrdinal("nomeosubcategoria")),
+                                    Descricao = reader.GetString(reader.GetOrdinal("descricaosubcategoria")),
+                                    CategoriaID = reader.GetInt32(reader.GetOrdinal("categoriaid")),
+                                    Categoria = new Categoria
+                                    {
+                                        CategoriaID = reader.GetInt32(reader.GetOrdinal("categoriaid")),
+                                        Nome = reader.GetString(reader.GetOrdinal("nomeocategoria")),
+                                        Descricao = reader.GetString(reader.GetOrdinal("descricaocategoria"))
+                                    }
+                                }
                             };
 
                             conteudos.Add(conteudo);

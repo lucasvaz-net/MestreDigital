@@ -14,7 +14,7 @@ namespace MestreDigital.Services
         private readonly ConteudoDAL _conteudoDAL;
         private readonly FAQDAL _faqDAL;
         private readonly ILogger<TelegramService> _logger;
-        private readonly UserStateService _userStateService; // Adicione esta linha
+        private readonly UserStateService _userStateService; 
 
         public TelegramService(
             ITelegramBotClient botClient,
@@ -156,11 +156,13 @@ namespace MestreDigital.Services
             }
             else
             {
-                message.AppendLine("Desculpe, não há Conteúdos disponíveis para a subcategoria escolhida. Por favor, escolha outra subcategoria.");
+                message.AppendLine("Desculpe, não há Conteúdos disponíveis para a opção escolhida. Por favor, escolha outra Categoria.\n\n");
                 currentState.CurrentStage = ConversationStage.CategorySelection;
+                message.AppendLine(DisplayMainMenu());
+
             }
 
-             _userStateService.SetState(update.Message.Chat.Id, currentState);
+            _userStateService.SetState(update.Message.Chat.Id, currentState);
 
             return message.ToString();
         }
@@ -196,7 +198,6 @@ namespace MestreDigital.Services
             {
                 messagesToSend.Add($"Texto: {conteudo.Texto}");
             }
-            messagesToSend.Add(DisplayMainMenu());
 
             foreach (var msg in messagesToSend)
             {
@@ -206,8 +207,8 @@ namespace MestreDigital.Services
 
 
 
-            currentState.CurrentStage = ConversationStage.MainMenu; // Redirecionar o usuário para o menu principal após mostrar a resposta.
-            currentState.SelectedCategoryId = null; // Resetamos para o estado padrão.
+           currentState.CurrentStage = ConversationStage.MainMenu; 
+           // currentState.SelectedCategoryId = null; // Resetamos para o estado padrão.
              _userStateService.SetState(update.Message.Chat.Id, currentState);
 
             return "";
@@ -281,7 +282,7 @@ namespace MestreDigital.Services
         private string DisplayMainMenu()
         {
             var categorias = _categoriaDAL.GetCategorias();
-            var message = new StringBuilder("Olá! 😊 Aqui estão as opções disponíveis:\n\n");
+            var message = new StringBuilder("Aqui estão as opções disponíveis:\n\n");
 
             // Adicione a opção de FAQs.
             message.AppendLine("0 - Perguntas Frequentes");
