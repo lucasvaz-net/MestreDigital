@@ -23,3 +23,14 @@ body {
     -moz-user-select: none;
     user-select: none;
 }  
+
+h1 {
+    text-align:center;
+
+}
+
+#bodylayout{
+
+    margin-bottom:50px;
+
+}
