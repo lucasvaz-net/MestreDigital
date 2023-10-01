@@ -1,0 +1,92 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    height: 100%;
+}
+
+header {
+    padding: 40px 4%;
+}
+
+    header > .interface {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+body {
+    background-image: url('/img/fundo1.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.box-login {
+    width: 300px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.422);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.box-img {
+    display: flex;
+    align-items: center
+}
+
+    .box-img h2 {
+        color: white;
+    }
+
+.box-login .boneco {
+    background-image: url('/img/boneco.png');
+    background-position: center;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    margin-right: 60px;
+}
+
+.box-login label {
+    display: block;
+    color: white;
+}
+
+.box-login input[type='text'], input[type='password'] {
+    width: 100%;
+    line-height: 35px;
+    border: none;
+    border-radius: 10px;
+}
+
+.box-login input[type='text'] {
+    margin-bottom: 20px;
+}
+
+.box-login a {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.box-login input[type='submit'] {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: green;
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+}

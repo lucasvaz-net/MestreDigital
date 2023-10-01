@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;1,900&display=swap" rel="stylesheet">
+    <!--Fim Google Fonts-->
+    <!--Boostrap icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!--Fim Boostrap icons-->
+    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <title>Painel Admin</title>
+</head>
+<body>
+    <header>
+        <!-- Logo da Barra -->
+        <div class="interface">
+            <div class="logo">
+                <a asp-area="" asp-controller="Home" asp-action="Index"><img src="/img/Logo.png" width="120"></a>
+            </div>
+
+            <div class="box-login">
+                <div class="box-img">
+                    <div class="boneco"></div>
+                    <div class="texto-login"><h2>Login</h2></div>
+
+                </div><!-- box-img -->
+                <form>
+                    <label>Usuário</label>
+                    <input type="text" placeholder="Usuário:" required>
+                    <label>Senha:</label>
+                    <input type="password" placeholder="Senha:" required>
+
+                    <a href="#">Esqueceu a Senha?</a>
+
+                    <input type="checkbox">
+                    <span>Lembrar-me</span>
+
+                    <input type="submit" value="Login">
+
+                </form>
+            </div> <!-- box-login -->
+         </div> 
+    </header> 
+
+
+</body>
+</html>
