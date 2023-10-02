@@ -1,4 +1,6 @@
-﻿namespace MestreDigital.Model
+﻿using MestreDigital.Models;
+
+namespace MestreDigital.Model
 {
     public class Conteudo
     {
@@ -9,6 +11,7 @@
         public string? Link { get; set; }
         public string? Texto { get; set; }
         public Subcategoria Subcategoria { get; set; }
+        public Status Status { get; set; }
 
     }
 }
