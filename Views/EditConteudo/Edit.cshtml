@@ -4,48 +4,68 @@
     ViewBag.Title = "Editar Conteúdo";
 }
 
-<h2>Editar Conteúdo</h2>
+<html>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="ConteudoID" />
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
 
-    <div class="form-group">
-        <label asp-for="Titulo">Título</label>
-        <input asp-for="Titulo" class="form-control" />
-        <span asp-validation-for="Titulo" class="text-danger"></span>
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Editar Conteúdo</h2>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Edit" method="post">
+                            <input type="hidden" asp-for="ConteudoID" />
+
+                            <div class="form-group">
+                                <label asp-for="Titulo">Título</label>
+                                <input asp-for="Titulo" class="form-control" />
+                                <span asp-validation-for="Titulo" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Descricao">Descrição</label>
+                                <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="Descricao" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Link">Link</label>
+                                <input asp-for="Link" class="form-control" />
+                                <span asp-validation-for="Link" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Texto">Texto</label>
+                                <textarea asp-for="Texto" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="Texto" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="SubcategoriaID">Subcategoria</label>
+                                <select asp-for="SubcategoriaID" asp-items="ViewBag.Subcategorias" class="form-control">
+                                    <option value="">Selecione uma subcategoria</option>
+                                </select>
+                                <span asp-validation-for="SubcategoriaID" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <button type="submit" class="btn btn-success">Salvar</button>
+                                <a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label asp-for="Descricao">Descrição</label>
-        <textarea asp-for="Descricao" class="form-control"></textarea>
-        <span asp-validation-for="Descricao" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="SubcategoriaID">Subcategoria</label>
-        <select asp-for="SubcategoriaID" asp-items="ViewBag.Subcategorias" class="form-control">
-            <option value="">Selecione uma subcategoria</option>
-        </select>
-        <span asp-validation-for="SubcategoriaID" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Link">Link</label>
-        <input asp-for="Link" class="form-control" />
-        <span asp-validation-for="Link" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Texto">Texto</label>
-        <textarea asp-for="Texto" class="form-control"></textarea>
-        <span asp-validation-for="Texto" class="text-danger"></span>
-    </div>
-    <br />
-    <button type="submit" class="btn btn-success">Salvar</button>
-    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
-</form>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+</body>
+</html>

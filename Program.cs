@@ -1,6 +1,6 @@
 using MestreDigital.DAL;
 using MestreDigital.Data;
-using MestreDigital.Data.Data;
+using MestreDigital.Filters;
 using MestreDigital.Services;
 using Telegram.Bot;
 
@@ -17,6 +17,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+var connectionString = builder.Configuration.GetConnectionString("MestreDigitalDb");
 
 builder.Services.AddSingleton<DatabaseConnectionService>();
 builder.Services.AddTransient<CategoriaDAL>();
@@ -26,7 +27,9 @@ builder.Services.AddTransient<FAQDAL>();
 builder.Services.AddTransient<FeedbackDAL>();
 builder.Services.AddTransient<UserStateService>();
 builder.Services.AddTransient<TelegramService>();
-
+builder.Services.AddScoped<UserTokenDal>(sp => new UserTokenDal(connectionString)); 
+builder.Services.AddScoped<TokenAuthorizeAttribute>();
+builder.Services.AddTransient<UsuarioDal>();
 
 string telegramToken = "6514778156:AAHKm6A1l0iJdz9jVcSVNcNToDso9BALCfA";
 builder.Services.AddSingleton<ITelegramBotClient>(new TelegramBotClient(telegramToken));
@@ -57,7 +60,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 var botClient = app.Services.GetRequiredService<ITelegramBotClient>();
-string webhookUrl = "https://1b00-2804-3858-fca7-e900-cde6-2768-f610-9326.ngrok-free.app/api/telegram/update";
+string webhookUrl = "https://mestredigital.lucasvaz.dev.br/api/telegram/update";
 await botClient.SetWebhookAsync(webhookUrl);
 
 app.Run();

@@ -1,7 +1,5 @@
-﻿using MestreDigital.Data.Data;
-using MestreDigital.Model;
+﻿using MestreDigital.Model;
 using Microsoft.Data.SqlClient;
-using System.Collections.Generic;
 
 namespace MestreDigital.Data
 {

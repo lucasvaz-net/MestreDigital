@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
-using MestreDigital.Data.Data;
-using MestreDigital.Models; 
+﻿using Microsoft.Data.SqlClient;
+using MestreDigital.Models;
+using System.Data;
 
 namespace MestreDigital.Data
 {
@@ -83,5 +82,86 @@ namespace MestreDigital.Data
 
             return usuario;
         }
+
+        public string GetHashedPasswordByEmail(string email)
+        {
+            using (var connection = _connectionService.CreateConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("dbo.sp_GetUserByEmail", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return reader.GetString(reader.GetOrdinal("Senha"));
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+
+
+        public int? CheckUserCredentials(string email, string hashedPassword)
+        {
+            int? userId = null;
+
+            using (var connection = _connectionService.CreateConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("dbo.sp_CheckUserCredentials", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@senha", hashedPassword);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            userId = reader.GetInt32(reader.GetOrdinal("usuarioid"));
+                        }
+                    }
+                }
+            }
+
+            return userId;
+        }
+
+
+        public int? GetUserIdByToken(string token)
+        {
+            int? userId = null;
+
+            using (var connection = _connectionService.CreateConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("dbo.sp_GetUserByToken", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@token", token);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            userId = reader.GetInt32(reader.GetOrdinal("UsuarioID"));
+                        }
+                    }
+                }
+            }
+
+            return userId;
+        }
+
+
     }
 }

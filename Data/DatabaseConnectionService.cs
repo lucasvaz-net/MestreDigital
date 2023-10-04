@@ -1,6 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-    namespace MestreDigital.Data.Data
+    namespace MestreDigital.Data
     {
         public class DatabaseConnectionService
         {

@@ -1,0 +1,162 @@
+
+/* Estilo Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: rgb(253, 250, 250);
+    height: 100vh;
+}
+
+.interface {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+}
+
+.btn-contato button {
+    padding: 10px 35px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: rgba(16, 198, 13, 0.662);
+    color: white;
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+/* Estilo do Cabeçalho */
+
+header {
+    padding: 40px 4%;
+}
+
+    header > .interface {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    header a {
+        color: rgba(7, 7, 7, 0.377);
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        header a:hover {
+            color: rgb(109, 215, 234);
+            transform: scale(1.25);
+            transition: .2s;
+        }
+
+    header nav ul {
+        list-style-type: none;
+    }
+
+        header nav ul li {
+            display: inline-block;
+            padding: 0 40px;
+        }
+
+
+
+.btn-contato button:hover {
+    box-shadow: 0px 0px 15px rgb(128, 129, 129);
+    transform: scale(1.25);
+}
+
+.btn-logout button {
+    padding: 10px 35px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: rgba(255, 0, 0, 0.662); /* Cor de fundo ajustada para vermelho */
+    color: white;
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+    .btn-logout button:hover {
+        box-shadow: 0px 0px 15px rgb(128, 129, 129);
+        transform: scale(1.25);
+    }
+
+
+/* Topo do Site */
+
+section.topo-do-site {
+    padding: 100px 4%;
+}
+
+section.topo-do-site .flex {
+        align-items: center;
+        justify-content: center;
+        gap: 100px;
+}
+
+.topo-do-site h1 {
+    color: rgb(129, 129, 131);
+    font-size: 48px;
+}
+
+.topo-do-site .text-topo-site h1 span {
+    color: rgba(0, 255, 255, 0.729);
+}
+
+.topo-do-site .text-topo-site p {
+    color: gray;
+    margin: 40px 0;
+}
+
+.topo-do-site .img-topo-do-site img {
+    position: relative;
+    animation: flutuar 2s ease-in-out infinite alternate;
+}
+
+@keyframes flutuar {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 30px;
+    }
+}
+
+
+/* Rodapé */
+
+footer {
+    padding: 10px 4%;
+    box-shadow: 0 0 60px 10px #00ffff3d;
+}
+
+footer .flex {
+        justify-content: space-between;
+    }
+
+footer .line-footer {
+        padding: 20px 0;
+    }
+
+.borda {
+    border-top: 2px solid aqua;
+}
+
+footer .line-footer p i {
+    color: #00ffff0f;
+    font: 22px
+}
+
+footer .line-footer p a {
+    color: rgb(0, 38, 255);
+}
