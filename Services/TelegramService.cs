@@ -113,9 +113,12 @@ namespace MestreDigital.Services
             if (subcategorias != null && subcategorias.Any())
             {
                 message.AppendLine("Agora selecione uma das opções abaixo:\n\n");
+
+                int sequencial = 1;
                 foreach (var subcategoria in subcategorias)
                 {
-                    message.AppendLine($"{subcategoria.SubcategoriaID} - {subcategoria.Nome}");
+                    message.AppendLine($"{sequencial} - {subcategoria.Nome}");
+                    sequencial++;
                 }
 
                 message.AppendLine("\nPor favor, escolha a opção pelo número!");

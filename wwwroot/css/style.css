@@ -33,6 +33,17 @@ body {
     transition: .2s;
 }
 
+h2.titulo {
+    color: rgb(129, 129, 131);
+    font-size: 48px;
+    text-align: center;
+}
+
+    h2.titulo span {
+        color: rgba(0, 255, 255, 0.729);
+    }
+/*Fim Geral*/
+
 /* Estilo do Cabeçalho */
 
 header {
@@ -53,7 +64,7 @@ header {
 
         header a:hover {
             color: rgb(109, 215, 234);
-            transform: scale(1.25);
+            transform: scale(1.05);
             transition: .2s;
         }
 
@@ -66,12 +77,11 @@ header {
             padding: 0 40px;
         }
 
-
-
-.btn-contato button:hover {
+.btn-contato button:hover, form .btn-enviar input[type=submit]:hover {
     box-shadow: 0px 0px 15px rgb(128, 129, 129);
-    transform: scale(1.25);
+    transform: scale(1.05);
 }
+
 
 .btn-logout button {
     padding: 10px 35px;
@@ -85,23 +95,26 @@ header {
     transition: .2s;
 }
 
+
     .btn-logout button:hover {
         box-shadow: 0px 0px 15px rgb(128, 129, 129);
-        transform: scale(1.25);
+        transform: scale(1.05);
     }
 
+/*Fim cabeçalho*/
 
 /* Topo do Site */
 
 section.topo-do-site {
-    padding: 100px 4%;
+    padding: 60px 4%;
+    padding-bottom: 100px 4%;
 }
 
-section.topo-do-site .flex {
+    section.topo-do-site .flex {
         align-items: center;
         justify-content: center;
         gap: 100px;
-}
+    }
 
 .topo-do-site h1 {
     color: rgb(129, 129, 131);
@@ -131,7 +144,90 @@ section.topo-do-site .flex {
         top: 30px;
     }
 }
+/*Fim topo do site*/
 
+/* Nossos Projetos */
+
+section .projetos {
+    padding: 150px 4%;
+}
+
+    section.projetos .flex {
+        gap: 60px;
+    }
+
+.projetos .projetos-box {
+    color: gray;
+    padding: 40px;
+    text-align: center;
+    border-radius: 20px;
+    /* border: 2px solid;  */
+    margin-top: 40px;
+    transition: .2s;
+}
+
+    .projetos .projetos-box:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 0px gray;
+    }
+
+/* Fale Conosco */
+section.formulario {
+    padding: 100px 4%;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+    form input {
+        width: 100%;
+        background-color: #bfbdbd7f;
+        border: 0;
+        outline: 1;
+        padding: 10px 15px;
+        border-radius: 15px;
+        color: #4a4949;
+        font-size: 18px;
+    }
+    /* form input::placeholder{
+    color: aqua;
+} */
+
+    form textarea {
+        resize: none;
+        height: 200px;
+        width: 100%;
+        background-color: #bfbdbd7f;
+        border: 0;
+        outline: 0;
+        padding: 10px 15px;
+        border-radius: 15px;
+        color: #4a4949;
+        font-size: 18px;
+    }
+
+    form .btn-enviar {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+        form .btn-enviar input[type=submit] {
+            width: 100px;
+            background-color: rgba(16, 198, 13, 0.662);
+            color: #f2f2f2;
+            font-weight: 500;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+/* Fim Fale Conosco */
 
 /* Rodapé */
 
@@ -140,11 +236,11 @@ footer {
     box-shadow: 0 0 60px 10px #00ffff3d;
 }
 
-footer .flex {
+    footer .flex {
         justify-content: space-between;
     }
 
-footer .line-footer {
+    footer .line-footer {
         padding: 20px 0;
     }
 

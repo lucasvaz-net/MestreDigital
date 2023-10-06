@@ -13,11 +13,13 @@ header {
     padding: 40px 4%;
 }
 
-    header > .interface {
+ header > .interface{
         display: flex;
         align-items: center;
         justify-content: space-between;
-    }
+}
+
+
 
 body {
     background-image: url('/img/fundo1.jpeg');
@@ -59,18 +61,18 @@ body {
 
 .box-login label {
     display: block;
-    color: white;
+    color: azure;
 }
 
 .box-login input[type='text'], input[type='password'] {
     width: 100%;
-    line-height: 35px;
+    line-height: 25px;
     border: none;
     border-radius: 10px;
 }
 
 .box-login input[type='text'] {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .box-login a {
@@ -78,15 +80,20 @@ body {
     margin-bottom: 10px;
 }
 
-.box-login input[type='submit'] {
+.box-login input[type='submit']{
     display: block;
     width: 100%;
-    padding: 10px 20px;
-    font-size: 20px;
+    padding: 10px 10px;
+    font-size: 18px;
     background-color: green;
     color: white;
     border: 0;
     border-radius: 15px;
     margin-top: 10px;
     cursor: pointer;
+}
+
+.box-login input[type='submit']:hover {
+        box-shadow: 0px 0px 15px rgb(247, 248, 248);
+        transform: scale(1.05);
 }

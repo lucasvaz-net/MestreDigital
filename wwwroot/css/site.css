@@ -3,34 +3,17 @@ html {
 }
 
 @media (min-width: 768px) {
-  html {
+  html{
     font-size: 16px;
   }
 }
 
-html {
+html{
   position: relative;
   min-height: 100%;
 }
 
-body {
+body{
+  background-color: black;
   margin-bottom: 60px;
-}
-.bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-}  
-
-h1 {
-    text-align:center;
-
-}
-
-#bodylayout{
-
-    margin-bottom:50px;
-
 }
