@@ -37,8 +37,6 @@ namespace MestreDigital.Services
 
         public async Task<string> ProcessUpdateAsync(Update update, UserState currentState)
         {
-            List<string> responseMessages;
-
             switch (currentState.CurrentStage)
             {
                 case ConversationStage.MainMenu:
@@ -60,13 +58,9 @@ namespace MestreDigital.Services
                     currentState.CurrentStage = ConversationStage.MainMenu;
                     return "Desculpe, não entendi. Por favor, comece novamente.";
             }
-
-            foreach (var message in responseMessages)
-            {
-                await _botClient.SendTextMessageAsync(update.Message.Chat.Id, message);
-            }
-
         }
+
+
 
 
         private string HandleMainMenu(Update update, UserState currentState)
@@ -114,13 +108,13 @@ namespace MestreDigital.Services
             {
                 message.AppendLine("Agora selecione uma das opções abaixo:\n\n");
 
-                int sequencial = 1;
+             
                 foreach (var subcategoria in subcategorias)
                 {
-                    message.AppendLine($"{sequencial} - {subcategoria.Nome}");
-                    sequencial++;
+                    message.AppendLine($"{subcategoria.SubcategoriaID} - {subcategoria.Nome}");
+  
                 }
-
+                message.AppendLine("0 - Voltar ao menu principal");
                 message.AppendLine("\nPor favor, escolha a opção pelo número!");
                 currentState.CurrentStage = ConversationStage.SubcategorySelection;
             }
@@ -138,11 +132,14 @@ namespace MestreDigital.Services
 
         private string HandleSubcategorySelection(Update update, UserState currentState)
         {
-            if (!int.TryParse(update.Message.Text, out int selectedSubcategoryId))
-            {
-                return "Por favor, insira um número válido para escolher uma opção.";
-            }
+            var selectedSubcategoryId = int.Parse(update.Message.Text);
 
+            if (selectedSubcategoryId == 0)
+            {
+                currentState.CurrentStage = ConversationStage.CategorySelection;
+                _userStateService.SetState(update.Message.Chat.Id, currentState);
+                return DisplayMainMenu();
+            }
             var conteudos = _conteudoDAL.GetConteudoBySubcategoriasId(selectedSubcategoryId);
             var message = new StringBuilder();
 
@@ -153,8 +150,8 @@ namespace MestreDigital.Services
                 {
                     message.AppendLine($"{conteudo.ConteudoID} - {conteudo.Titulo}");
                 }
-
-                message.AppendLine("\nPor favor, escolha o Conteúdo pelo número!");
+                message.AppendLine("0 - Voltar ao menu principal");
+                message.AppendLine("\nPor favor, escolha o Conteúdo pelo ID!");
                 currentState.CurrentStage = ConversationStage.ContentSelection;
             }
             else
@@ -162,7 +159,6 @@ namespace MestreDigital.Services
                 message.AppendLine("Desculpe, não há Conteúdos disponíveis para a opção escolhida. Por favor, escolha outra Categoria.\n\n");
                 currentState.CurrentStage = ConversationStage.CategorySelection;
                 message.AppendLine(DisplayMainMenu());
-
             }
 
             _userStateService.SetState(update.Message.Chat.Id, currentState);
@@ -170,12 +166,18 @@ namespace MestreDigital.Services
             return message.ToString();
         }
 
-
         private async Task<string> HandleContentDetailAsync(Update update, UserState currentState)
         {
             if (!int.TryParse(update.Message.Text, out int selectedConteudoId))
             {
                 return "Por favor, insira um número válido para escolher um conteúdo.";
+            }
+
+            if (selectedConteudoId == 0)
+            {
+                currentState.CurrentStage = ConversationStage.CategorySelection;
+                _userStateService.SetState(update.Message.Chat.Id, currentState);
+                return DisplayMainMenu();
             }
 
             var conteudo = _conteudoDAL.GetConteudoById(selectedConteudoId);
@@ -186,20 +188,19 @@ namespace MestreDigital.Services
 
             var messagesToSend = new List<string>
     {
-        $"Título: {conteudo.Titulo}",
-        $"Descrição: {conteudo.Descricao}"
+        $"{conteudo.Titulo}",
     };
 
 
 
             if (!string.IsNullOrEmpty(conteudo.Link))
             {
-                messagesToSend.Add($"Link: {conteudo.Link}");
+                messagesToSend.Add($"{conteudo.Link}");
             }
 
             if (!string.IsNullOrEmpty(conteudo.Texto))
             {
-                messagesToSend.Add($"Texto: {conteudo.Texto}");
+                messagesToSend.Add($"{conteudo.Texto}");
             }
 
             foreach (var msg in messagesToSend)
@@ -285,7 +286,7 @@ namespace MestreDigital.Services
         private string DisplayMainMenu()
         {
             var categorias = _categoriaDAL.GetCategorias();
-            var message = new StringBuilder("Aqui estão as opções disponíveis:\n\n");
+            var message = new StringBuilder("Olá! 😊 Aqui estão as opções disponíveis:\n\n");
 
             // Adicione a opção de FAQs.
             message.AppendLine("0 - Perguntas Frequentes");
