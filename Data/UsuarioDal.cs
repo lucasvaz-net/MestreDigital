@@ -33,9 +33,15 @@ namespace MestreDigital.Data
                                 Nome = reader.GetString(reader.GetOrdinal("Nome")),
                                 Email = reader.GetString(reader.GetOrdinal("Email")),
                                 Senha = reader.GetString(reader.GetOrdinal("Senha")),
+                                ChatId = reader.GetString(reader.GetOrdinal("ChatId")),
                                 TipoDeUsuario = new TipoDeUsuario
                                 {
                                     Descricao = reader.GetString(reader.GetOrdinal("TipoUsuario"))
+                                },
+                                Status = new Status
+                                {
+                                    StatusID = reader.GetInt32(reader.GetOrdinal("StatusId")),
+                                    Descricao = reader.GetString(reader.GetOrdinal("Descricao"))
                                 }
                             };
 
@@ -70,9 +76,15 @@ namespace MestreDigital.Data
                                 Nome = reader.GetString(reader.GetOrdinal("Nome")),
                                 Email = reader.GetString(reader.GetOrdinal("Email")),
                                 Senha = reader.GetString(reader.GetOrdinal("Senha")),
+                                ChatId = reader.GetString(reader.GetOrdinal("ChatId")),
                                 TipoDeUsuario = new TipoDeUsuario
                                 {
                                     Descricao = reader.GetString(reader.GetOrdinal("TipoUsuario"))
+                                },
+                                Status = new Status
+                                {
+                                    StatusID = reader.GetInt32(reader.GetOrdinal("StatusId")),
+                                    Descricao = reader.GetString(reader.GetOrdinal("Descricao"))
                                 }
                             };
                         }
@@ -82,6 +94,49 @@ namespace MestreDigital.Data
 
             return usuario;
         }
+
+
+        public Usuario GetUsuarioPorChatID(int chatId)
+        {
+            Usuario usuario = null;
+
+            using (var connection = _connectionService.CreateConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand("SELECT * FROM vw_Usuarios WHERE ChatId = @chatId", connection))
+                {
+                    command.Parameters.AddWithValue("@chatId", chatId);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            usuario = new Usuario
+                            {
+                                UsuarioID = reader.GetInt32(reader.GetOrdinal("UsuarioID")),
+                                Nome = reader.GetString(reader.GetOrdinal("Nome")),
+                                Email = reader.GetString(reader.GetOrdinal("Email")),
+                                Senha = reader.GetString(reader.GetOrdinal("Senha")),
+                                ChatId = reader.GetString(reader.GetOrdinal("ChatId")),
+                                TipoDeUsuario = new TipoDeUsuario
+                                {
+                                    Descricao = reader.GetString(reader.GetOrdinal("TipoUsuario"))
+                                },
+                                Status = new Status
+                                {
+                                    StatusID = reader.GetInt32(reader.GetOrdinal("StatusId")),
+                                    Descricao = reader.GetString(reader.GetOrdinal("Descricao"))
+                                }
+                            };
+                        }
+                    }
+                }
+            }
+
+            return usuario;
+        }
+
 
         public string GetHashedPasswordByEmail(string email)
         {

@@ -1,9 +1,8 @@
-﻿using MestreDigital.Model;
-using MestreDigital.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using MestreDigital.Data;
 
 namespace MestreDigital.Controllers
 {
@@ -12,20 +11,17 @@ namespace MestreDigital.Controllers
     public class TelegramController : ControllerBase
     {
         private readonly ITelegramBotClient _botClient;
-        private readonly UserStateService _userStateService;
-        private readonly TelegramService _telegramService;
         private readonly ILogger<TelegramController> _logger;
+        private readonly HistoriaDAL _historiaDAL;
 
         public TelegramController(
             ITelegramBotClient botClient,
-            UserStateService userStateService,
-            TelegramService telegramService,
-            ILogger<TelegramController> logger)
+            ILogger<TelegramController> logger,
+            HistoriaDAL historiaDAL)
         {
             _botClient = botClient;
-            _userStateService = userStateService;
-            _telegramService = telegramService;
             _logger = logger;
+            _historiaDAL = historiaDAL;
         }
 
         [HttpPost("update")]
@@ -42,18 +38,21 @@ namespace MestreDigital.Controllers
                 var update = Newtonsoft.Json.JsonConvert.DeserializeObject<Update>(body);
                 if (update?.Message == null)
                 {
-                    _logger.LogWarning("Update doesn't contain a message.");
                     return BadRequest("No message in the update.");
                 }
 
-                var currentState = _userStateService.GetState(update.Message.Chat.Id) ?? new UserState
-                {
-                    ChatId = update.Message.Chat.Id,
-                    CurrentStage = ConversationStage.MainMenu
-                };
+                
+                string userMessage = update.Message.Text;
+                string userName = update.Message.From.FirstName;
 
-                string responseMessage = await _telegramService.ProcessUpdateAsync(update, currentState);
-                await _botClient.SendTextMessageAsync(update.Message.Chat.Id, responseMessage);
+      
+                var responseMessage = await _historiaDAL.CallTelegramService(
+                    update.Message.Chat.Id,
+                    userMessage,
+                    userName
+                );
+
+                await _botClient.SendTextMessageAsync(update.Message.Chat.Id, responseMessage.Replace("/n/n", "\n"));
 
                 return Ok();
             }
@@ -63,5 +62,6 @@ namespace MestreDigital.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
     }
 }
