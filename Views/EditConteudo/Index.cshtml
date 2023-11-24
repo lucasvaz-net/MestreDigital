@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<MestreDigital.Model.Conteudo>
 
 @{
+    @*Layout = null;*@
     ViewBag.Title = "Gerenciamento de Conteúdos";
 }
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
         <br />
         <h1>Listagem de Conteúdos</h1>
          <br />
-        <a href="@Url.Action("Create", "EditConteudo")" class="btn btn-success">Adicionar Novo Conteúdo</a>
+        <a href="@Url.Action("Create", "EditConteudo")" class="btn btn-success">Adicionar Conteúdo</a>
 
         <table class="table table-bordered table-striped mt-4">
             <thead class="thead-dark">
