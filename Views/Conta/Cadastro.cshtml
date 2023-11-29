@@ -16,7 +16,7 @@
     <!--Fim Boostrap icons-->
     <link rel="stylesheet" href="~/css/login.css">
     <!--<link rel="stylesheet" href="~/css/style.css">-->
-    <title>Painel Admin</title>
+    <title>Cadastro - Painel Admin</title>
     <style>
         .button {
             padding: 10px 35px;
@@ -29,6 +29,7 @@
             cursor: pointer;
             transition: .2s;
         }
+
     </style>
 </head>
 <body>
@@ -41,37 +42,36 @@
 
             <div class="box-login">
                 <div class="box-img">
-                    <div class="boneco"></div>
-                    <div class="texto-login"><h2>Login</h2></div>
+                    <div class="texto-login"><h2>Cadastre-se</h2></div>
                 </div><!-- box-img -->
+                <form asp-controller="Conta" asp-action="Cadastro" method="post" class="mb-4">
+                    <label>Nome:</label>
+                    <input type="text" name="nome" placeholder="Seu Nome:" required>
 
-                <form asp-controller="Conta" asp-action="Login" method="post">
-                    <label>Usuário</label>
-                    <input type="text" name="email" placeholder="Usuário:" required>
+                    <label>E-mail:</label>
+                    <input type="email" name="email" placeholder="Seu E-mail:" required>
 
                     <label>Senha:</label>
                     <input type="password" name="senha" placeholder="Senha:" required>
 
-                    <a href="#">Esqueceu a Senha?</a>
+                    <label>Confirme a Senha:</label>
+                    <input class="mb-4" type="password" name="confirmaSenha" placeholder="Confirme a Senha:" required>
 
-                    <input type="checkbox" name="lembrar-me">
-                    <span>Lembrar-me</span>
-
-                    <input type="submit" value="Login">
-                    <div class="cadastre-se">
-                        <p>Ainda não tem uma conta?</p>
-                       
-                    </div>
-                   
                 </form>
-                <a asp-area="" asp-controller="Conta" asp-action="Cadastro" class="text-center">
-                    <button class="button" type="submit">Cadastre-se</button>
-                </a>
-
+             <br/>
+                <div class="cadastre-se">
+                    <a asp-area="" asp-controller="Conta" asp-action="Sucesso" class="text-center">
+                        <button class="button" type="submit">Cadastrar</button>
+                    </a>
+                </div>
+                <div class="cadastre-se">
+                    <p>Já tem uma conta?</p>
+                    <a asp-area="" asp-controller="EditConteudo" asp-action="Index" class="text-center">
+                        <button class="button" type="submit">Login</button>
+                    </a>
+                </div>
             </div> <!-- box-login -->
-         </div> 
-    </header> 
-
-
+        </div>
+    </header>
 </body>
 </html>

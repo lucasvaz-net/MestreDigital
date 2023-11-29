@@ -1,5 +1,6 @@
-﻿
-var radio = document.querySelector('.manual-btn')
+
+﻿var radio = document.querySelector('.manual-btn')
+
 var cont = 1
 
 document.getElementById('radio1').checked = true

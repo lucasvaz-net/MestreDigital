@@ -17,19 +17,6 @@
     <link rel="stylesheet" href="~/css/login.css">
     <!--<link rel="stylesheet" href="~/css/style.css">-->
     <title>Painel Admin</title>
-    <style>
-        .button {
-            padding: 10px 35px;
-            font-size: 18px;
-            font-weight: 500;
-            background-color: rgba(16, 198, 13, 0.662);
-            color: white;
-            border: 0;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: .2s;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -43,31 +30,22 @@
                 <div class="box-img">
                     <div class="boneco"></div>
                     <div class="texto-login"><h2>Login</h2></div>
+
                 </div><!-- box-img -->
-
-                <form asp-controller="Conta" asp-action="Login" method="post">
+                <form>
                     <label>Usuário</label>
-                    <input type="text" name="email" placeholder="Usuário:" required>
-
+                    <input type="text" placeholder="Usuário:" required>
                     <label>Senha:</label>
-                    <input type="password" name="senha" placeholder="Senha:" required>
+                    <input type="password" placeholder="Senha:" required>
 
                     <a href="#">Esqueceu a Senha?</a>
 
-                    <input type="checkbox" name="lembrar-me">
+                    <input type="checkbox">
                     <span>Lembrar-me</span>
 
                     <input type="submit" value="Login">
-                    <div class="cadastre-se">
-                        <p>Ainda não tem uma conta?</p>
-                       
-                    </div>
-                   
-                </form>
-                <a asp-area="" asp-controller="Conta" asp-action="Cadastro" class="text-center">
-                    <button class="button" type="submit">Cadastre-se</button>
-                </a>
 
+                </form>
             </div> <!-- box-login -->
          </div> 
     </header> 

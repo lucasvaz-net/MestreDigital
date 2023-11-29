@@ -68,5 +68,20 @@ namespace MestreDigital.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+
+
+        [HttpGet]
+        public IActionResult Cadastro()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Sucesso()
+        {
+            return View();
+        }
+
     }
 }

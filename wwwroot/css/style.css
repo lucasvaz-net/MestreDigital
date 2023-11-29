@@ -33,6 +33,19 @@ body {
     transition: .2s;
 }
 
+.btn-logout button {
+    padding: 10px 35px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: rgba(255, 0, 0, 0.662);
+    color: white;
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+
 h2.titulo {
     color: rgb(129, 129, 131);
     font-size: 48px;
@@ -81,26 +94,6 @@ header {
     box-shadow: 0px 0px 15px rgb(128, 129, 129);
     transform: scale(1.05);
 }
-
-
-.btn-logout button {
-    padding: 10px 35px;
-    font-size: 18px;
-    font-weight: 500;
-    background-color: rgba(255, 0, 0, 0.662); /* Cor de fundo ajustada para vermelho */
-    color: white;
-    border: 0;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: .2s;
-}
-
-
-    .btn-logout button:hover {
-        box-shadow: 0px 0px 15px rgb(128, 129, 129);
-        transform: scale(1.05);
-    }
-
 /*Fim cabeçalho*/
 
 /* Topo do Site */
@@ -170,6 +163,11 @@ section .projetos {
         transform: scale(1.05);
         box-shadow: 0 0 0px gray;
     }
+
+    /*Nossa Equipe*/
+
+
+
 
 /* Fale Conosco */
 section.formulario {

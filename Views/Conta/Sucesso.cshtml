@@ -16,9 +16,9 @@
     <!--Fim Boostrap icons-->
     <link rel="stylesheet" href="~/css/login.css">
     <!--<link rel="stylesheet" href="~/css/style.css">-->
-    <title>Painel Admin</title>
+    <title>Cadastro - Painel Admin</title>
     <style>
-        .button {
+         .button {
             padding: 10px 35px;
             font-size: 18px;
             font-weight: 500;
@@ -29,6 +29,7 @@
             cursor: pointer;
             transition: .2s;
         }
+
     </style>
 </head>
 <body>
@@ -39,39 +40,19 @@
                 <a asp-area="" asp-controller="Home" asp-action="Index"><img src="/img/Logo.png" width="120"></a>
             </div>
 
-            <div class="box-login">
-                <div class="box-img">
-                    <div class="boneco"></div>
-                    <div class="texto-login"><h2>Login</h2></div>
+            <div class="box-login text-center">
+                <div class="box-img text-center">
+                    <div class="texto-login"><h2>Cadastro Realizado com Sucesso!</h2></div>
                 </div><!-- box-img -->
-
-                <form asp-controller="Conta" asp-action="Login" method="post">
-                    <label>Usuário</label>
-                    <input type="text" name="email" placeholder="Usuário:" required>
-
-                    <label>Senha:</label>
-                    <input type="password" name="senha" placeholder="Senha:" required>
-
-                    <a href="#">Esqueceu a Senha?</a>
-
-                    <input type="checkbox" name="lembrar-me">
-                    <span>Lembrar-me</span>
-
-                    <input type="submit" value="Login">
-                    <div class="cadastre-se">
-                        <p>Ainda não tem uma conta?</p>
-                       
-                    </div>
-                   
-                </form>
-                <a asp-area="" asp-controller="Conta" asp-action="Cadastro" class="text-center">
-                    <button class="button" type="submit">Cadastre-se</button>
-                </a>
-
+                <div class="mensagem-sucesso text-center">
+                    <p>Seu cadastro foi realizado com sucesso. Seu perfil está em analise, em até 48 horas te enviaremos um email. 
+                        Você já pode fazer o login usando suas credenciais, mas não poderá realizar alterações.</p>
+                    <a asp-area="" asp-controller="EditConteudo" asp-action="Index" class="text-center">
+                        <button class="button" type="submit">Login</button>
+                    </a>
+                </div>
             </div> <!-- box-login -->
-         </div> 
-    </header> 
-
-
+        </div>
+    </header>
 </body>
 </html>

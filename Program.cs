@@ -59,7 +59,7 @@ app.MapControllerRoute(
 
 var botClient = app.Services.GetRequiredService<ITelegramBotClient>();
 string webhookUrl = "https://mestredigital.lucasvaz.dev.br/api/telegram/update";
-//string webhookUrl = "https://895a-2804-3858-fced-4c00-a164-d40b-2411-1a52.ngrok-free.app/api/telegram/update";
+//string webhookUrl = "https://442d-2804-3858-fc2c-cd00-1cba-dcae-6879-6a56.ngrok-free.app/api/telegram/update";
 await botClient.SetWebhookAsync(webhookUrl);
 
 app.Run();
